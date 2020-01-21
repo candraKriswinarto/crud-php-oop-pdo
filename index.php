@@ -68,18 +68,22 @@
 <div class="row">
   <?php 
     $posts = new Posts();
-    foreach($posts->getPost() as $post) {
-      echo '<div class="col-md-6 mt-4">';
-      echo '<div class="card">';
-      echo '<div class="card-body">';
-      echo "<h5 class='card-title'>" . $post['title'] . "</h5>";
-      echo "<p class='card-text'>" . $post['body'] . "</p>";
-      echo "<h6 class='card-subtitle text-muted text-right'>Author: " . $post['author'] . "</h6>";
-      echo "<a  href='editForm.php?id=" . $post['id'] . "' class='btn btn-warning'>Edit</a> ";
-      echo "<a href='post.process.php?send=del&id=" . $post['id'] . "' class='btn btn-danger'>Delete</a>";
-      echo "</div>";
-      echo "</div>";
-      echo "</div>";
+    if($posts->getPost()) {
+      foreach($posts->getPost() as $post) {
+        echo '<div class="col-md-6 mt-4">';
+        echo '<div class="card">';
+        echo '<div class="card-body">';
+        echo "<h5 class='card-title'>" . $post['title'] . "</h5>";
+        echo "<p class='card-text'>" . $post['body'] . "</p>";
+        echo "<h6 class='card-subtitle text-muted text-right'>Author: " . $post['author'] . "</h6>";
+        echo "<a  href='editForm.php?id=" . $post['id'] . "' class='btn btn-warning'>Edit</a> ";
+        echo "<a href='post.process.php?send=del&id=" . $post['id'] . "' class='btn btn-danger'>Delete</a>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+      }
+    }  else {
+      echo "<p class='mt-5 mx-auto'>Post is empty...</p>";
     }
   ?>
 </div>
